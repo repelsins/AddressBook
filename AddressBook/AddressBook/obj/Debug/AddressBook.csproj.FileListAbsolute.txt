@@ -1,0 +1,6 @@
+c:\users\rihardsr\documents\visual studio 2013\Projects\AddressBook\AddressBook\bin\Debug\AddressBook.exe.config
+c:\users\rihardsr\documents\visual studio 2013\Projects\AddressBook\AddressBook\obj\Debug\AddressBook.csprojResolveAssemblyReference.cache
+c:\users\rihardsr\documents\visual studio 2013\Projects\AddressBook\AddressBook\bin\Debug\AddressBook.exe
+c:\users\rihardsr\documents\visual studio 2013\Projects\AddressBook\AddressBook\bin\Debug\AddressBook.pdb
+c:\users\rihardsr\documents\visual studio 2013\Projects\AddressBook\AddressBook\obj\Debug\AddressBook.exe
+c:\users\rihardsr\documents\visual studio 2013\Projects\AddressBook\AddressBook\obj\Debug\AddressBook.pdb
