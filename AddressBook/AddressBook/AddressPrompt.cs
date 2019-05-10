@@ -70,13 +70,14 @@ namespace AddressBook
                 case "find":
                     Console.WriteLine("Enter the contacts first name you want to find");
                     firstName = Console.ReadLine();
-                    if (_addressCatalog.IsEmpty())
+                    Contact contact = _addressCatalog.FindContact(firstName);
+                    if (contact == null)
                     {
-                        Console.WriteLine("The Address Catalog is empty");
+                        Console.WriteLine("Contact for {0} could not be found.", firstName);
                     }
                     else
                     {
-                        
+                        Console.WriteLine("Persons name: {0} {1}", contact.FirstName, contact.LastName);
                     }
 
                     break;
