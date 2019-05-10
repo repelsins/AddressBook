@@ -9,16 +9,16 @@ namespace AddressBook
 {
     class AddressPrompt
     {
-        private AddressCatalog catalog;
+        private readonly AddressCatalog _addressCatalog;
 
 
 
 
 
 
-        public AddressPrompt()
+        private AddressPrompt()
         {
-            catalog = new AddressCatalog();
+            _addressCatalog = new AddressCatalog();
         }
 
 
@@ -26,17 +26,17 @@ namespace AddressBook
 
 
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            string userInput = "";
-            AddressPrompt prompt = new AddressPrompt();
-            prompt.DisplayMenu();
+            var userInput = "";
+            AddressPrompt addressPrompt = new AddressPrompt();
+            DisplayMenu();
 
             while (userInput.ToLower() != "quit")
             {
                 Console.WriteLine("What do you want to do?");
                 userInput = Console.ReadLine();
-                prompt.Action(userInput);
+                addressPrompt.Action(userInput);
             }
 
         }
@@ -48,8 +48,8 @@ namespace AddressBook
 
         private void Action(string userInput)
         {
-            string firstName = "";
-            string lastName = "";
+            var firstName = "";
+            var lastName = "";
 
             switch (userInput.ToLower())
             {
@@ -58,7 +58,7 @@ namespace AddressBook
                     firstName = Console.ReadLine();
                     Console.WriteLine("Enter the contacts last name you want to add:");
                     lastName = Console.ReadLine();
-                    if (catalog.add(firstName,lastName))
+                    if (_addressCatalog.AddContact(firstName, lastName))
                     {
                         Console.WriteLine("Contact successfully added");
                     }
@@ -67,16 +67,47 @@ namespace AddressBook
                         Console.WriteLine("Contact {0} already exists", firstName);
                     }
                     break;
+                case "find":
+                    Console.WriteLine("Enter the contacts first name you want to find");
+                    firstName = Console.ReadLine();
+                    if (_addressCatalog.IsEmpty())
+                    {
+                        Console.WriteLine("The Address Catalog is empty");
+                    }
+                    else
+                    {
+                        
+                    }
+
+                    break;
+
                 case "remove":
                     Console.WriteLine("Enter the contacts first name you want to remove:");
                     firstName = Console.ReadLine();
-                    if (catalog.remove(firstName))
+                    if (_addressCatalog.RemoveContact(firstName))
                     {
                         Console.WriteLine("Contact successfully removed");
                     }
                     else
                     {
                         Console.WriteLine("Contact for {0} could not be found.", firstName);
+                    }
+                    break;
+                case "list":
+                    if (_addressCatalog.IsEmpty())
+                    {
+                        Console.WriteLine("The Address Catalog is empty");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Contacts:");
+                        _addressCatalog.ContactList(
+                            delegate(Contact a)
+                            {
+                                Console.WriteLine("{0} - {1}", a.FirstName, a.LastName);
+
+                            }
+                            );
                     }
                     break;
             }
@@ -87,7 +118,7 @@ namespace AddressBook
 
 
 
-        void DisplayMenu()
+        private static void DisplayMenu()
         { 
             Console.WriteLine("Welcome to the Address Book Application!");
             Console.WriteLine("Type:");
